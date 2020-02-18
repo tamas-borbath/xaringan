@@ -13,3 +13,36 @@
     deleted = true;
   });
 })();
+
+//Preview cards
+var preview_win_cards = document.querySelectorAll(".preview-win");
+for (var card of preview_win_cards) {
+    (clickedCard => {
+        clickedCard.addEventListener("click", e => {
+            var img = clickedCard.querySelector("img");
+            if (img) {
+                window.open(img.src);
+            }
+        });
+    })(card);
+}
+
+//full screen background color
+function isFullScreen() {
+    return window.fullScreen || (window.innerWidth == screen.width && window.innerHeight == screen.height);
+}
+
+window.addEventListener("resize", () => {
+    if (isFullScreen()) {
+        document.body.style["background-color"] = "#000";
+    } else {
+        document.body.style["background-color"] = "#d7d8d2";
+    }
+});
+
+// VUE
+for (var el of document.querySelectorAll(".vue")) {
+    new Vue({
+        el: el
+    });
+}
